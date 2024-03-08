@@ -1,4 +1,4 @@
-﻿V,I,R(MOHM),"NOTA: da cella 15 il voltmetro misura solo 2 ciffre dopo la virgola, valutare errore"
+﻿V,I(uA),R(MOHM),"NOTA: da cella 15 il voltmetro misura solo 2 ciffre dopo la virgola, valutare errore"
 0.494,0.24,2,
 0.970,0.48,2,
 1.483,0.73,2,
