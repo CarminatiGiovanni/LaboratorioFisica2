@@ -134,13 +134,13 @@ pvalue: {self.pvalue}%""" if hasattr(self,'rchisquare') else ''
         return s1 + s2
 
 def decimal_val(x,decimals = 2, exp=0, udm: str = '') -> str:
-    x = np.round(x*np.power(10,-exp),decimals)
+    x = np.round(x*np.power(10.0,-exp),decimals)
     return f'{x} {udm}' if exp == 0 else f'{x}e{exp} {udm}'
 
 
 def final_val(x,sigma,decimals = 2,exp = 0, udm: str = '') -> str:
-    x = np.round(x*np.power(10,-exp),decimals)
-    sigma = np.round(sigma*np.power(10,-exp),decimals)
+    x = np.round(x*np.power(10.0,-exp),decimals)
+    sigma = np.round(sigma*np.power(10.0,-exp),decimals)
     return f'{x} ± {sigma} {udm}' if exp == 0 else f'({x} ± {sigma})e{exp} {udm}'
 
 def b_std(x: ndarray): # deviazione standard con correzione di bessel
