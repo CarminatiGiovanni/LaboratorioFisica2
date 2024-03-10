@@ -24,3 +24,9 @@ in teoria dovrebbe creare una cartella sul vostro computer (LaboratorioFisica2) 
 3. fatto il checkpoint si ricarica online con ```git push```
 
 spero si capisca più o meno
+
+
+# LINK
+
+[Circuiti](https://app.smartdraw.com/)
+
