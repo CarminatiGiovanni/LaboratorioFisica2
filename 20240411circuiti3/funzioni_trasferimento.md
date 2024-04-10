@@ -1,19 +1,36 @@
 # CALCOLO FUNZIONI DI TRASFERIMENTO PER CIRCUITI
 
-## IMPEDENZE:
-
+## IMPEDENZE
 
 - CONDENSATORE: $Z_C = \frac{1}{j\omega C}$
 - RESISTORE: $Z_R = R$
 - INDUTTORE: $Z_L = j\omega L$
 
+## DEFINIZIONE FUNZIONE DI TRASFERIMENTO
+
+$V_{out} = V_{in} H(\omega)$ la tensione misurata su un componente ($V_{out}$)dipende dalla tensione in ingresso nel circuito $V_{in}$ moltiplicato per una funzione dipendente dalla frequenza detta FUNZIONE DI TRASFERIMENTO
+
+### Per un generatore di onde sinusoidali
+
+$V_{in} = V_G e^{j\omega t}$
+
+$V_{out} = H(\omega)V_{in}$ dove $H(\omega) \in \Complex$
+
+$H(\omega) = \rho e^{j\Phi}$ ha una fase e un modulo costanti nel tempo
+
+$\Rightarrow V_{out} = V_G\cdot\rho\cdot e^{i\omega t}\cdot e^{i\Phi}$
+
+$\Rightarrow V_{out} = V_G\cdot|H(\omega)|\cdot e^{i\omega t}\cdot e^{i\angle H(\omega)}$
+
 ## CIRCUITO RC: $Z_{tot} = R + \frac{1}{j\omega C}$
 
 ### $H_C(\omega) = \frac{1}{1 + j\omega RC}$
+
 - $|H_C(\omega)| = \frac{1}{\sqrt{1+\omega^2R^2C^2}}$
 - $\angle H_C(\omega) = -arctan(\omega RC)$
 
 ### $H_R(\omega) = \frac{j\omega RC}{1 + j\omega RC}$
+
 - $|H_C(\omega)| = \frac{\omega RC}{\sqrt{1+\omega^2R^2C^2}}$
 - $\angle H_C(\omega) = \frac{\pi}{2}-arctan(\omega RC)$
 
