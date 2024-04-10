@@ -28,3 +28,23 @@
 
 - $|H_R(\omega)| = \frac{R}{\sqrt{(R+R_L)^2 + \omega^2 L^2}}$
 - $\angle H_R(\omega) = -arctan(\frac{\omega L}{R+R_L})$
+
+## CIRCUITO RLC: $Z_{tot} = R + R_L + j\omega L + \frac{1}{j \omega C}$
+
+$Z_{tot} = \frac{j\omega C}{(R + R_L)\omega Cj + 1 - \omega^2 LC}$
+
+### $H_R(\omega) = \frac{j\omega CR}{(R + R_L)\omega Cj + 1 - \omega^2 LC}$
+
+- $|H_R(\omega)| = \frac{\omega CR}{\sqrt{(1-\omega^2LC)^2 + \omega^2C^2 (R+R_L)^2}}$
+
+- $\angle H_R(\omega) = \frac{\pi}{2}-arctan(\frac{\omega C(R+R_L)}{1-\omega^2LC})$
+
+### $H_C(\omega) = \frac{1}{(R + R_L)\omega Cj + 1 - \omega^2 LC}$
+
+- $|H_C(\omega)| = \frac{1}{\sqrt{(1-\omega^2LC)^2 + \omega^2C^2 (R+R_L)^2}}$
+- $\angle H_C(\omega) = -arctan(\frac{\omega C(R+R_L)}{1-\omega^2LC})$
+
+### $H_L(\omega) = \frac{\omega CR_Lj - \omega^2LC}{(R + R_L)\omega Cj + 1 - \omega^2 LC}$
+
+- $|H_L(\omega)| = \frac{\sqrt{\omega^2C^2R_L^2+\omega^4L^2C^2}}{\sqrt{(1-\omega^2LC)^2 + \omega^2C^2 (R+R_L)^2}}$
+- $\angle H_C(\omega) = -arctan(\frac{R_L}{\omega L}) - arctan(\frac{\omega C(R+R_L)}{1-\omega^2LC})$
