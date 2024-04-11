@@ -31,8 +31,8 @@ $\Rightarrow V_{out} = V_G\cdot|H(\omega)|\cdot e^{i\omega t}\cdot e^{i\angle H(
 
 ### $H_R(\omega) = \frac{j\omega RC}{1 + j\omega RC}$
 
-- $|H_C(\omega)| = \frac{\omega RC}{\sqrt{1+\omega^2R^2C^2}}$
-- $\angle H_C(\omega) = \frac{\pi}{2}-arctan(\omega RC)$
+- $|H_R(\omega)| = \frac{\omega RC}{\sqrt{1+\omega^2R^2C^2}}$
+- $\angle H_R(\omega) = \frac{\pi}{2}-arctan(\omega RC)$
 
 ## CIRCUITO RL: $Z_{tot} = R + R_L + j\omega L$
 
