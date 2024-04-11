@@ -1,4 +1,4 @@
-﻿R(kOhm),R_L,Freq(kHz),Vin,sigmaV_in,VR,VL,faseR (deg),faseL(deg),sigmaV_R,sigmaV_L,sigmaF_R,sigmaF_L
+﻿R(kOhm),R_L,Freq (kHz),Vin,sigmaV_in,VR,VL,faseR (deg),faseL (deg),sigmaV_R,sigmaV_L,sigmaF_R,sigmaF_L
 9.95,40,1.5,2.52,0.16,2.48,0.16,-3.24,159.00,0.08,0.04,1,150
 ,,3.0,2.48,0.16,2.48,0.24,-5.40,84.60,0.08,0.04,1,10
 ,,6.0,2.48,0.16,2.44,0.44,-10.60,81.50,0.08,0.04,1,5
