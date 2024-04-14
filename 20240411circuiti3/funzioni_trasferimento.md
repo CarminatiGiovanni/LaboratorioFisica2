@@ -65,3 +65,8 @@ $Z_{tot} = \frac{j\omega C}{(R + R_L)\omega Cj + 1 - \omega^2 LC}$
 
 - $|H_L(\omega)| = \frac{\sqrt{\omega^2C^2R_L^2+\omega^4L^2C^2}}{\sqrt{(1-\omega^2LC)^2 + \omega^2C^2 (R+R_L)^2}}$
 - $\angle H_L(\omega) = -arctan(\frac{R_L}{\omega L}) - arctan(\frac{\omega C(R+R_L)}{1-\omega^2LC})$
+
+### $H_{RL}(\omega) = \frac{1 + \omega CR_Lj - \omega^2LC}{(R + R_L)\omega Cj + 1 - \omega^2 LC}$
+
+- $|H_{RL}(\omega)| = \frac{\sqrt{(1-\omega^2 LC) + \omega^2C^2 R_L^2}}{\sqrt{(1-\omega^2LC)^2 + \omega^2C^2 (R+R_L)^2}}$
+- $\angle H_{RL}(\omega) = arctan(\frac{\omega CR_L}{1-\omega^2LC}) - arctan(\frac{\omega C(R+R_L)}{1-\omega^2LC})$
