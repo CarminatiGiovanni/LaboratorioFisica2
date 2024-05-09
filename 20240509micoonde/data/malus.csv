@@ -1,4 +1,4 @@
-﻿Emettitore,Ricevitore,teta (deg),V (Volt),sigmaV,I (mA),sigmaI,sigmateta,scala
+﻿Emettitore,Ricevitore,alpha (deg),V (Volt),sigmaV,I (mA),sigmaI,sigmaalpha,scala
 10cm,100cm,0,1.700,0.020,0.400,0.020,passo 5deg,x30
 ,,15,1.630,0.020,0.380,0.020,,
 ,,30,1.450,0.020,0.340,0.020,,
