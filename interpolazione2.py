@@ -32,7 +32,7 @@ NOTA:
 '''
 
 class Interpolazione:
-    def __init__(self,X: ndarray[float64], Y: ndarray[float64],f,sigmaY_strumento: ndarray[float64] | float64 = None,p0 = None,weights: ndarray[float64] = None, names: list[str] = None) -> None:
+    def __init__(self,X: ndarray[float64], Y: ndarray[float64],f,sigmaY: ndarray[float64] | float64 = None,p0 = None,weights: ndarray[float64] = None, names: list[str] = None) -> None:
         self.f = f
         self.Ydata = Y.astype('float64')
         self.Xdata = X.astype('float64')
@@ -43,8 +43,8 @@ class Interpolazione:
 
         # self.sigmaY = np.sqrt(self.__sigmaY()**2 + sigmaY_strumento**2) # propaga con sigmaY strumento
 
-        if sigmaY_strumento is not None:
-            self.sigmaY = sigmaY_strumento
+        if sigmaY is not None:
+            self.sigmaY = sigmaY
             self.dof = self.N - len(self.bval)
             self.chi2 = self.__chi2()
             self.rchi2 = self.__chi2()/self.dof
@@ -108,13 +108,33 @@ covariance:\n{self.cov_matrix}
 
 """
 
-        s4 = '---------- VALORI FIT: -----------\n'
+        s4 = ''
         if self.names != None: # assegna i nomi alle variabili
+            s4 = '---------- VALORI FIT: -----------\n'
             for n,v,s in zip(self.names,self.bval,self.sigma_bval):
                 s4 += f"{n}: {v} ± {s}\n"
 
         return s1 + s2 + s3 + s4
 
+class Interpolazione2(Interpolazione):
+    def __init__(self,X,Y,f,error_propag,sigmaY,sigmaX,p0 = None,weights: ndarray[float64] = None, names: list[str] = None, iteration=1):
+        super().__init__(X,Y,f,sigmaY,names=names,p0 = p0,weights=weights)
+        self.sigmaX = sigmaX
+        self.error_propag = error_propag
+        
+        for _ in range(iteration):
+            sigma_y_prop = error_propag(self.Xdata,self.sigmaX,self.bval,self.cov_matrix)
+            self.sigmaY = np.sqrt(self.sigmaY**2 + sigma_y_prop**2)
+            
+            new_interpolation = Interpolazione(self.Xdata,self.Ydata,f,self.sigmaY,self.bval,weights=weights,names=names)
+            
+            self.bval = new_interpolation.bval
+            self.sigma_bval = new_interpolation.sigma_bval
+            self.cov_matrix = new_interpolation.cov_matrix
+            self.chi2 = new_interpolation.chi2
+            self.rchi2 = new_interpolation.rchi2
+            self.dof = new_interpolation.dof
+        
 
 def b_std(x: ndarray): # deviazione standard con correzione di bessel
     return np.sqrt(np.sum((x - np.mean(x))**2)/(len(x)-1))
@@ -152,13 +172,46 @@ if __name__ == '__main__':
     # r = RettaInterpolata(X,Y,1)
     # print(r)
     def ret(x,A,B):
-         return A + B*x**2
+         return A + B*x
     
     r = Interpolazione(X,Y,ret,0.2,names=['A','B'])
-    plt.errorbar(X,Y,fmt='o', yerr=r.sigmaY, capsize=7, color='red', ecolor='black')
-    plt.plot(*r.draw())
+    # plt.errorbar(X,Y,fmt='o', yerr=r.sigmaY, capsize=7, color='red', ecolor='black')
+    # plt.plot(*r.draw())
+    # plt.show()
+    # print(r)
+    
+    
+    ###################################
+    
+    def par(x,A,B):
+        return A + B*x**2
+    
+    def sigma_retta(x,sigmaX,bval,cov):
+        [A,B] = bval
+        [vA,vB] = np.diag(cov)
+        vAB = cov[1][1]
+        
+        ddA = 1
+        ddx = 2*B*X
+        ddB = X
+        
+        return np.sqrt(ddA**2*vA + ddB**2*vB + ddx**2*sigmaX**2 + 2*ddA*ddB*vAB)
+         
+    
+    p1 = Interpolazione2(X,Y,par,sigma_retta,0.2,0.2,iteration=290)
+    p2 = Interpolazione(X,Y,par,0.2)
+    
+    print(p1.sigmaY,p2.sigmaY)
+    
+    plt.errorbar(X,Y,fmt='o', yerr=p1.sigmaY, capsize=0, color='red', ecolor='red')
+    plt.plot(*p1.draw(),color='red')
+    plt.errorbar(X,Y,fmt='o', yerr=p2.sigmaY,xerr=0.2, capsize=0, color='blue', ecolor='blue',)
+    plt.plot(*p2.draw(),color='blue')
     plt.show()
-    print(r)
+
+
+    
+    ##################################à
 
     # def f(x,a,b,c):
     #     return a*x**2 + b*x + c
