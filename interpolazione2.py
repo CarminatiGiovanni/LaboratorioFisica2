@@ -41,9 +41,6 @@ class Interpolazione:
         self.bval, self.cov_matrix = curve_fit(f,X,Y,p0=p0)
         self.sigma_bval = np.sqrt(np.diag(self.cov_matrix)) * (self.N/(self.N-len(self.bval))) # CORREZIONE DI BESSEL per interpolazioni
 
-        self.X = np.linspace(min(X),max(X),100)
-        self.Y = f(self.X,*self.bval)
-
         # self.sigmaY = np.sqrt(self.__sigmaY()**2 + sigmaY_strumento**2) # propaga con sigmaY strumento
 
         if sigmaY_strumento is not None:
@@ -59,10 +56,8 @@ class Interpolazione:
                 self.sigmaY = self.__w_sigmaY()
             else:                   # minimi quadrati
                 self.sigmaY = self.__sigmaY()
-
-        if names != None: # assegna i nomi alle variabili
-            self.bval = {x : y for x,y in zip(names,self.bval)}
-            self.sigma_bval = {x : y for x,y in zip(names,self.sigma_bval)}
+                
+        self.names = names
 
     def __sigmaY(self): # deviazione standard
         return np.sqrt(
@@ -110,8 +105,15 @@ dof: {self.dof}""" if hasattr(self,'chi2') else ''
         
         s3 = f"""
 covariance:\n{self.cov_matrix}    
+
 """
-        return s1 + s2 + s3
+
+        s4 = '---------- VALORI FIT: -----------\n'
+        if self.names != None: # assegna i nomi alle variabili
+            for n,v,s in zip(self.names,self.bval,self.sigma_bval):
+                s4 += f"{n}: {v} ± {s}\n"
+
+        return s1 + s2 + s3 + s4
 
 
 def b_std(x: ndarray): # deviazione standard con correzione di bessel
@@ -152,7 +154,7 @@ if __name__ == '__main__':
     def ret(x,A,B):
          return A + B*x**2
     
-    r = Interpolazione(X,Y,ret,0.2)
+    r = Interpolazione(X,Y,ret,0.2,names=['A','B'])
     plt.errorbar(X,Y,fmt='o', yerr=r.sigmaY, capsize=7, color='red', ecolor='black')
     plt.plot(*r.draw())
     plt.show()
