@@ -122,11 +122,16 @@ class Interpolazione2(Interpolazione):
         self.sigmaX = sigmaX
         self.error_propag = error_propag
         
+        sigma_y_prop = 0
+        sigma_y_tot = self.sigmaY
         for _ in range(iteration):
             sigma_y_prop = error_propag(self.Xdata,self.sigmaX,self.bval,self.cov_matrix)
-            self.sigmaY = np.sqrt(self.sigmaY**2 + sigma_y_prop**2)
+            sigma_y_tot = np.sqrt(sigma_y_prop**2 + sigma_y_tot**2)
             
-            new_interpolation = Interpolazione(self.Xdata,self.Ydata,f,self.sigmaY,self.bval,weights=weights,names=names)
+            print(sigma_y_prop[0],sigma_y_tot[0])
+            new_interpolation = Interpolazione(self.Xdata,self.Ydata,f,
+                                               sigma_y_tot, # linea chiave
+                                               self.bval,weights=weights,names=names)
             
             self.bval = new_interpolation.bval
             self.sigma_bval = new_interpolation.sigma_bval
@@ -198,7 +203,7 @@ if __name__ == '__main__':
         return np.sqrt(ddA**2*vA + ddB**2*vB + ddx**2*sigmaX**2 + 2*ddA*ddB*vAB)
          
     
-    p1 = Interpolazione2(X,Y,par,sigma_retta,0.2,0.2,iteration=290)
+    p1 = Interpolazione2(X,Y,par,sigma_retta,0.2,0.2,iteration=10)
     p2 = Interpolazione(X,Y,par,0.2)
     
     print(p1.sigmaY,p2.sigmaY)
