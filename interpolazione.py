@@ -86,6 +86,10 @@ pvalue: {self.pvalue}%""" if hasattr(self,'rchisquare') else ''
 covariance matrix: {self.cov_matrix}    
 """
         return s1 + s2 + s3
+    
+    
+    
+    
 
 class RettaInterpolata(Interpolazione):
     def __init__(self,X,Y,sigmaY_strumento: ndarray[float64] | float64 = None,weights: ndarray[float64] = None):
