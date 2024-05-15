@@ -80,7 +80,7 @@ class Interpolazione:
 
     def __str__(self) -> str:
         # s1 = str(self.m) + '\n\n
-        s0 = '----------------- VALORI FIT: -----------------\n\n'
+        s0 = '----------------- VALORI FIT: -----------------\n'
         s2 = f"dof: {self.dof}\nchi2: {self.chi2}\nchi2 ridotto: {self.rchi2}"
         
         exponents = np.array(np.floor(np.log10(np.abs(list(self.values.values())))),dtype=np.int32)
