@@ -90,10 +90,7 @@ class Interpolazione:
         s4 = '\n------------------------------------------------\n'
         return s0 + s3 + '\n\n' + s2 + s4
     
-    
-    
-    
-    
+
 
 if __name__ == '__main__':
    
