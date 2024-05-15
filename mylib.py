@@ -85,7 +85,7 @@ class Interpolazione:
         
         exponents = np.array(np.floor(np.log10(np.abs(list(self.values.values())))),dtype=np.int32)
                 
-        s3 = '\n'.join([n + ':' + final_val(v,s,3,e) for n,v,s,e in zip(self.names,self.values.values(),self.errors.values(),exponents)])
+        s3 = '\n'.join([n + ': ' + final_val(v,s,3,e) for n,v,s,e in zip(self.names,self.values.values(),self.errors.values(),exponents)])
          
         s4 = '\n------------------------------------------------\n'
         return s0 + s3 + '\n\n' + s2 + s4
