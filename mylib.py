@@ -61,7 +61,7 @@ class Interpolazione:
         
         self.chi2 = np.round(self.m.fval,2)
         self.dof = len(X) - len(guess)
-        self.rchi2 = np.round(self.chi2/self.dof)
+        self.rchi2 = np.round(self.chi2/self.dof,2)
         
         self.values = self.m.values.to_dict()
         self.errors = self.m.errors.to_dict()
