@@ -67,6 +67,8 @@ class Interpolazione:
         self.errors = self.m.errors.to_dict()
         self.covariance = np.array(self.m.covariance)
         
+        self.pvalue = np.round(sc.stats.chi2.sf(self.chi2,self.dof),2)
+        
     def draw(self,xscale='linear',N=1000):
         if xscale == 'log':
             x = np.logspace(np.log10(self.X.min()),np.log10(self.X.max()),N)
@@ -81,7 +83,7 @@ class Interpolazione:
     def __str__(self) -> str:
         # s1 = str(self.m) + '\n\n
         s0 = '----------------- VALORI FIT: -----------------\n'
-        s2 = f"dof: {self.dof}\nchi2: {self.chi2}\nchi2 ridotto: {self.rchi2}"
+        s2 = f"dof: {self.dof}\nchi2: {self.chi2}\nchi2 ridotto: {self.rchi2}\npvalue: {self.pvalue}"
         
         exponents = np.array(np.floor(np.log10(np.abs(list(self.values.values())))),dtype=np.int32)
                 
