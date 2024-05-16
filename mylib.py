@@ -67,7 +67,7 @@ class Interpolazione:
         self.errors = self.m.errors.to_dict()
         self.covariance = np.array(self.m.covariance)
         
-        self.pvalue = np.round(sc.stats.chi2.sf(self.chi2,self.dof),2)
+        self.pvalue = np.round(sc.stats.chi2.sf(self.chi2,self.dof),2) # sf = survival function = 1 - cdf
         
     def draw(self,xscale='linear',N=1000):
         if xscale == 'log':
