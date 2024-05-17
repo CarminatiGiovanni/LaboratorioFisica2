@@ -24,7 +24,7 @@ class Interpolazione:
     def __init__(self,X: ndarray[float64], Y: ndarray[float64],
                  sigmaY: ndarray[float64] | float64,sigmaX: ndarray[float64] | float64,
                  model: Callable,guess: ndarray[float64],
-                 names: list[str] = None, iteration = 5) -> None:
+                 names: list[str] = None, iteration = 3) -> None:
         self.f = model
         self.Y = Y.astype('float64')
         self.X = X.astype('float64')
