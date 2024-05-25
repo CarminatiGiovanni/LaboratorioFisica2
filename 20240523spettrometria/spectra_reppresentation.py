@@ -1,3 +1,5 @@
+import numpy as np
+
 def wave2rgb(wave):
     # This is a port of javascript code from  http://stackoverflow.com/a/14917481
     gamma = 0.8
@@ -46,3 +48,26 @@ def wave2rgb(wave):
             return intensity_max * pow (c * factor, gamma)
  
     return f(red), f(green), f(blue)
+
+def draw_spectrum(λ):
+    import matplotlib.pyplot as plt
+
+    # Set the height and calculate the width
+    height = 1
+    width = 10 * height
+
+    # Create a figure with the desired width and height
+    plt.style.use('dark_background')   
+    fig = plt.figure(figsize=(width, height))
+
+    for l in λ:
+        c = wave2rgb(float(l))        # Set the black background
+        plt.axvline(x=l, color=c)
+    
+    plt.xticks(np.arange(300, 701, 50))
+    plt.yticks([])
+    # plt.xticks(np.arange(400, 600, 10))
+    plt.xlabel('λ [nm]')   
+  
+    plt.show()
+    
