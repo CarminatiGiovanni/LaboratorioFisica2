@@ -1,0 +1,5 @@
+﻿colore,n1 deg,n1 prim,n2 deg,n2 prim,n3 deg,n3 prim,,note
+BLU,352,20,344,30,336,30,,(si vede anche la frangia blu del 4 ordine)
+ACQUA,351,15,342,33,332,56,,(abbiamo preso l'acqua più a sinistra)
+VERDE,350,20,340,30,330,2,,
+GIALLO,349,51,339,20,328,0,,(in caso di doppia riga prendiamo quella piu a sinistra)
