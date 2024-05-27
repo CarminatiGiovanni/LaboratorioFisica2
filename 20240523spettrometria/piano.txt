@@ -1,8 +1,0 @@
-- accendiamo le lampade
-- ricalibriamo
-- lampade ignote
-- angolo prisma
-- angoli minima deviazione
-- ignoto con prisma (tramite angoli minima deviazione)
-- calibrazione reticolo
-- 
