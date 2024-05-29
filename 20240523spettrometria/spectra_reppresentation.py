@@ -49,7 +49,7 @@ def wave2rgb(wave):
  
     return f(red), f(green), f(blue)
 
-def draw_spectrum(λ,sigma=None):
+def draw_spectrum(λ,sigma=None,ytitle=None):
     import matplotlib.pyplot as plt
 
     height = 1
@@ -72,6 +72,7 @@ def draw_spectrum(λ,sigma=None):
     plt.xticks(np.arange(350, 701, 50))
     plt.yticks([])
     plt.xlabel('λ [nm]')   
+    plt.ylabel(ytitle)
   
     plt.show()
     plt.style.use('default')
